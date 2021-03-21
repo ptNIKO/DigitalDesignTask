@@ -10,6 +10,7 @@ public class Main {
 
         String string = scanner.nextLine();
 
+        // Проверка строки на валидность
         if (Validator.isValid(string)) {
             unpack(string);
         } else {
@@ -25,10 +26,11 @@ public class Main {
             int indexNumberBeforeBracket = 0;
             String multipliedString = "";
 
-            indexFirstBracket = string.lastIndexOf("[");
-            indexLastBracket = string.indexOf(']', indexFirstBracket);
-            numberBeforeBracket = Integer.parseInt(String.valueOf(string.charAt(indexFirstBracket - 1)));
-            indexNumberBeforeBracket = indexFirstBracket - 1;
+            indexFirstBracket = string.lastIndexOf("["); // Индекс первой открытой скобки с конца
+            indexLastBracket = string.indexOf(']', indexFirstBracket); // Индекс последней закрытой скобки от индекса открытой
+            numberBeforeBracket = Integer.parseInt(String.valueOf(string.charAt(indexFirstBracket - 1))); // Число перед скобкой
+            indexNumberBeforeBracket = indexFirstBracket - 1; // Индекс числа перед скобкой
+
             multipliedString = multiplyString(numberBeforeBracket, indexFirstBracket, indexLastBracket, string);
             string = replaceString(multipliedString,string, indexNumberBeforeBracket, indexLastBracket);
         }
@@ -36,6 +38,7 @@ public class Main {
         System.out.println(string);
     }
 
+    // Умножение строки в скобках на число
     public static String multiplyString(int number, int start, int end,  String s) {
         String cutString = "";
 
@@ -51,6 +54,7 @@ public class Main {
         return result;
     }
 
+    // Замена числа со скобкой на готовый результат
     public static String replaceString(String modifiedString, String string, int startIndex, int endIndex) {
         String replacedString = "";
         for (int i = startIndex; i <= endIndex; i++) {
